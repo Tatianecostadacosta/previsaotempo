@@ -1,0 +1,21 @@
+<div *ngIf="forecastData" class="max-w-md mx-auto">
+  <h3 class="text-lg font-bold text-gray-800 drop-shadow text-center mb-4">📅 Próximos 5 dias</h3>
+  <div class="grid grid-cols-5 gap-2">
+    <div
+      *ngFor="let day of getDailyForecasts()"
+      class="bg-white/40 backdrop-blur-md rounded-2xl p-3 text-center border border-white/50 shadow-lg"
+    >
+      <p class="text-xs text-gray-600 font-semibold uppercase">
+        {{ day.dt_txt | date:'EEE' }}
+      </p>
+      <img
+        [src]="'https://openweathermap.org/img/wn/' + day.weather[0].icon + '.png'"
+        [alt]="day.weather[0].description"
+        class="mx-auto w-10 h-10 drop-shadow"
+      />
+      <p class="text-sm font-bold text-gray-800">
+        {{ day.main.temp | number:'1.0-0' }}°C
+      </p>
+    </div>
+  </div>
+</div>
